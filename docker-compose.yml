@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  php:
+    image: devilbox/php-fpm:8.2-base
+    volumes:
+      - .:/var/www/project
+
+  db:
+    image: mysql:8.0
+    platform: linux/x86_64
+    container_name: mysql8
+    ports:
+      - "4306:3306"
+    restart: always
+    environment:
+      MYSQL_USER: project-user
+      MYSQL_ROOT_PASSWORD: project-password
+      MYSQL_PASSWORD: project-password
+      MYSQL_DATABASE: project-db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/project
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
