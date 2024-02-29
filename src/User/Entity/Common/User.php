@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\User\Entity;
+namespace App\User\Entity\Common;
 
 use App\Common\Trait\UuidTrait;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use UuidTrait;
 
@@ -16,17 +16,11 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @param string[] $roles
      */
     public function __construct(
-        protected string $username,
         protected string $password,
         protected string $email,
         protected array $roles = [],
     ) {
         $this->initializeUuid();
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
     }
 
     public function getPassword(): string
@@ -63,7 +57,7 @@ final class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        return $this->getUsername();
+        return $this->getEmail();
     }
 
     public function eraseCredentials(): void {}
