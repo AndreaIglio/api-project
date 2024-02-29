@@ -60,7 +60,8 @@
             "@auto-scripts"
         ],
         "phpstan": "vendor/bin/phpstan analyse -l max src/",
-        "phpunit": "vendor/bin/phpunit"
+        "phpunit": "vendor/bin/phpunit",
+        "ecs": "vendor/bin/php-cs-fixer"
     },
     "conflict": {
         "symfony/symfony": "*"
