@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 final class Manager extends User
 {
+    /** @var Collection<array-key, Customer> */
     private Collection $customers;
 
     public function __construct(
@@ -21,6 +22,7 @@ final class Manager extends User
         $this->customers = new ArrayCollection();
     }
 
+    /** @return  Collection<array-key, Customer>  */
     public function getCustomers(): Collection
     {
         return $this->customers;

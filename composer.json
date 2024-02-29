@@ -19,7 +19,8 @@
         "symfony/runtime": "6.4.*",
         "symfony/security-bundle": "6.4.*",
         "symfony/uid": "6.4.*",
-        "symfony/yaml": "6.4.*"
+        "symfony/yaml": "6.4.*",
+        "webmozart/assert": "^1.11"
     },
     "config": {
         "allow-plugins": {

@@ -6,9 +6,9 @@ namespace App\User\Entity\Common;
 
 use App\Common\Trait\UuidTrait;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements SecurityUserInterface, PasswordAuthenticatedUserInterface, UserInterface
 {
     use UuidTrait;
 
