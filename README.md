@@ -2,7 +2,7 @@ API-PROJECT
 ========================
 
 ![Symfony 6.4](https://img.shields.io/badge/Symfony-6.4-purple.svg?style=flat-square&logo=symfony)
-![Php 8.2](https://img.shields.io/badge/Php-8.2-blue.svg?style=flat-square&logo=php)
+![Php 8.3.3](https://img.shields.io/badge/Php-8.3.3-blue.svg?style=flat-square&logo=php)
 ![MySql 8.0](https://img.shields.io/badge/MySql-8.0-red.svg?style=flat-square&logo=mysql)
 ![Nginx](https://img.shields.io/badge/Nginx-green.svg?style=flat-square&logo=nginx)
 ![Docker](https://img.shields.io/badge/Docker-yellow.svg?style=flat-square&logo=yellow)
