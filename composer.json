@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": "8.2.*",
+        "php": "8.3.*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/dbal": "^3",
@@ -18,6 +18,7 @@
         "symfony/http-client": "6.4.*",
         "symfony/runtime": "6.4.*",
         "symfony/security-bundle": "6.4.*",
+        "symfony/uid": "6.4.*",
         "symfony/yaml": "6.4.*"
     },
     "config": {
@@ -61,7 +62,7 @@
         ],
         "phpstan": "vendor/bin/phpstan analyse -l max src/",
         "phpunit": "vendor/bin/phpunit",
-        "ecs": "vendor/bin/php-cs-fixer"
+        "ecs": "vendor/bin/php-cs-fixer fix"
     },
     "conflict": {
         "symfony/symfony": "*"
