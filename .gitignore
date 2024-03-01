@@ -1,3 +1,7 @@
+###> multimedia_resources ###
+public/multimedia_resources/*
+###< multimedia_resources ###
+
 .idea
 .idea/
 .DS_Store
