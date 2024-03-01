@@ -44,7 +44,7 @@ final readonly class MultimediaResourceManager
             // File exist in db and in directory so return
             return MultimediaResourceResultDto::create($existingResource, false, false);
         }
-        // if resource doesnt exist create new one
+        // if resource doesn't exist create new one
         $multimediaResource = new MultimediaResource($user);
         $multimediaResource->setFileName($fileName);
         $multimediaResource->setExt($extension);
@@ -57,7 +57,7 @@ final readonly class MultimediaResourceManager
 
     public function removeResource(MultimediaResource $resource): void
     {
-        $filePath = $this->uploadDirectory.'/'.$resource->getFileName().$resource->getExt();
+        $filePath = $this->uploadDirectory.'/'.$resource->getFileName(). '.' .$resource->getExt();
         $fileSystem = new Filesystem();
 
         if ($fileSystem->exists($filePath)) {
