@@ -14,16 +14,16 @@ final class UserVoter extends Voter
 {
     public const CREATE_MANAGER = 'create_manager';
     public const CREATE_CUSTOMER = 'create_customer';
-    public const EDIT_MANAGER = 'edit_manager';
-    public const EDIT_CUSTOMER = 'edit_customer';
+    public const EDIT_OR_REMOVE_MANAGER = 'edit_or_remove_manager';
+    public const EDIT_OR_REMOVE_CUSTOMER = 'edit_or_remove_customer';
 
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [
             self::CREATE_MANAGER,
             self::CREATE_CUSTOMER,
-            self::EDIT_MANAGER,
-            self::EDIT_CUSTOMER,
+            self::EDIT_OR_REMOVE_MANAGER,
+            self::EDIT_OR_REMOVE_CUSTOMER,
         ]);
     }
 
@@ -47,10 +47,10 @@ final class UserVoter extends Voter
                 return $this->canCreateManager($user);
             case self::CREATE_CUSTOMER:
                 return $this->canCreateCustomer($user, $subject instanceof Customer ? $subject : null);
-            case self::EDIT_MANAGER:
-                return $this->canEditManager($user, $subject instanceof Manager ? $subject : null);
-            case self::EDIT_CUSTOMER:
-                return $this->canEditCustomer($user, $subject instanceof Customer ? $subject : null);
+            case self::EDIT_OR_REMOVE_MANAGER:
+                return $this->canEditOrRemoveManager($user, $subject instanceof Manager ? $subject : null);
+            case self::EDIT_OR_REMOVE_CUSTOMER:
+                return $this->canEditOrRemoveCustomer($user, $subject instanceof Customer ? $subject : null);
         }
 
         throw new \LogicException('Questo codice non dovrebbe essere raggiunto!');
@@ -67,13 +67,13 @@ final class UserVoter extends Voter
         return in_array('ROLE_MANAGER', $user->getRoles()) || in_array('ROLE_ADMIN', $user->getRoles());
     }
 
-    private function canEditManager(User $user, ?Manager $subject): bool
+    private function canEditOrRemoveManager(User $user, ?Manager $subject): bool
     {
         // Solo un admin o il manager stesso può modificare o rimuovere il proprio profilo
         return $user === $subject || in_array('ROLE_ADMIN', $user->getRoles());
     }
 
-    private function canEditCustomer(User $user, ?Customer $subject): bool
+    private function canEditOrRemoveCustomer(User $user, ?Customer $subject): bool
     {
         // Solo un cliente stesso, il suo manager, o un admin possono modificare il cliente
         return $user === $subject || ($subject && $user === $subject->getManager()) || in_array('ROLE_ADMIN', $user->getRoles());
