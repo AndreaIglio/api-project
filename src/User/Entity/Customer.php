@@ -14,9 +14,8 @@ final class Customer extends User
         Manager $manager,
         string $password,
         string $email,
-        array $roles = [],
     ) {
-        parent::__construct($password, $email, $roles);
+        parent::__construct($password, $email, ['ROLE_CUSTOMER']);
         $this->manager = $manager;
     }
 

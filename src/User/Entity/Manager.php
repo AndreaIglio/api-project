@@ -15,10 +15,9 @@ final class Manager extends User
 
     public function __construct(
         string $password,
-        string $email,
-        array $roles = []
+        string $email
     ) {
-        parent::__construct($password, $email, $roles);
+        parent::__construct($password, $email, ['ROLE_MANAGER']);
         $this->customers = new ArrayCollection();
     }
 
