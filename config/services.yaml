@@ -11,5 +11,5 @@ imports:
 services:
     # default configuration for services in *this* file
     _defaults:
-        autowire: true
-        autoconfigure: true
+        autowire: false
+        autoconfigure: false

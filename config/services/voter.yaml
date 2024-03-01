@@ -8,3 +8,8 @@ services:
     class: App\User\Voter\UserVoter
     tags:
       - { name: 'security.voter' }
+
+  app.voter.multimedia_resource:
+    class: App\MultimediaResource\Voter\MultimediaResourceVoter
+    tags:
+      - { name: 'security.voter' }

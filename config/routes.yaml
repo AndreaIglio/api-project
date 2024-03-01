@@ -34,3 +34,18 @@ customer_remove:
   path: api/customer/{customerId}/remove
   methods: ['DELETE']
   controller: App\User\Controller\CustomerController::remove
+
+multimedia_resource_add:
+  path: api/multimedia-resource/add
+  methods: ['POST']
+  controller: App\MultimediaResource\Controller\MultimediaResourceController::add
+
+multimedia_resource_edit:
+  path: api/multimedia-resource/{multimediaResourceId}/edit
+  methods: ['PUT']
+  controller: App\MultimediaResource\Controller\MultimediaResourceController::edit
+
+multimedia_resource_remove:
+  path: api/multimedia-resource/{multimediaResourceId}/remove
+  methods: ['DELETE']
+  controller: App\MultimediaResource\Controller\MultimediaResourceController::remove

@@ -75,7 +75,7 @@ final class UserVoter extends Voter
 
     private function canEditOrRemoveCustomer(User $user, ?Customer $subject): bool
     {
-        // The customer itself can edit or remove his profile or the manager related
-        return $user === $subject || ($subject && $user === $subject->getManager());
+        // The customer itself can edit or remove his profile or the manager related or admin
+        return $user === $subject || ($subject && $user === $subject->getManager()) || in_array('ROLE_ADMIN', $user->getRoles());
     }
 }

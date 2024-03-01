@@ -13,7 +13,7 @@ class Customer extends User
 {
     private Manager $manager;
 
-    /** @var Collection<array-key, MultimediaResource>  */
+    /** @var Collection<array-key, MultimediaResource> */
     private Collection $multimediaResources;
 
     public function __construct(

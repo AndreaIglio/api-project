@@ -24,3 +24,13 @@ services:
       - method: setContainer
         arguments: [ '@Psr\Container\ContainerInterface' ]
     tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
+  App\MultimediaResource\Controller\MultimediaResourceController:
+    public: true
+    arguments:
+      - '@app.repository.multimedia_resource'
+      - '@app.manager.multimedia_resource'
+    calls:
+      - method: setContainer
+        arguments: [ '@Psr\Container\ContainerInterface' ]
+    tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

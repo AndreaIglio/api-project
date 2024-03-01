@@ -17,5 +17,32 @@ final class MultimediaResource
 
     public function __construct(
         private readonly Customer $customer,
-    ) {}
+    ) {
+        $this->initializeUuid();
+    }
+
+    public function getCustomer(): Customer
+    {
+        return $this->customer;
+    }
+
+    public function setFileName(string $fileName): void
+    {
+        $this->fileName = $fileName;
+    }
+
+    public function setExt(string $ext): void
+    {
+        $this->ext = $ext;
+    }
+
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
+    public function getExt(): string
+    {
+        return $this->ext;
+    }
 }

@@ -1,0 +1,11 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: false
+    autoconfigure: false
+
+  app.manager.multimedia_resource:
+    class: App\MultimediaResource\Manager\MultimediaResourceManager
+    arguments:
+      - '@app.repository.multimedia_resource'
+      - '%kernel.project_dir%/public/multimedia_resources'

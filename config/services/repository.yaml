@@ -13,3 +13,8 @@ services:
     class: App\User\Repository\CustomerRepository
     arguments:
       - '@Doctrine\Persistence\ManagerRegistry'
+
+  app.repository.multimedia_resource:
+    class: App\MultimediaResource\Repository\MultimediaResourceRepository
+    arguments:
+      - '@Doctrine\Persistence\ManagerRegistry'
