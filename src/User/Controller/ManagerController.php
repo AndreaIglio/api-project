@@ -46,20 +46,20 @@ final class ManagerController extends AbstractController
      */
     public function edit(Request $request, string $managerId): Response
     {
-        $this->denyAccessUnlessGranted(UserVoter::EDIT_OR_REMOVE_MANAGER);
-
         if (!Uuid::isValid($managerId)) {
             throw $this->createNotFoundException(sprintf('The manager ID "%s" is not valid!', $managerId));
         }
 
-        $requestData = json_decode($request->getContent(), true) ?: [];
-        $requestData = json_decode($request->getContent(), true) ?: [];
-        Assert::isArray($requestData);
         $manager = $this->managerRepository->findOneById(Uuid::fromString($managerId));
 
         if (!$manager) {
             throw $this->createNotFoundException(sprintf('Manager with ID "%s" not found.', $managerId));
         }
+
+        $this->denyAccessUnlessGranted(UserVoter::EDIT_OR_REMOVE_MANAGER, $manager);
+
+        $requestData = json_decode($request->getContent(), true) ?: [];
+        Assert::isArray($requestData);
 
         try {
             $updateResult = $this->updateManager($manager, $requestData);
@@ -75,8 +75,6 @@ final class ManagerController extends AbstractController
      */
     public function remove(Request $request, string $managerId): Response
     {
-        $this->denyAccessUnlessGranted(UserVoter::EDIT_OR_REMOVE_MANAGER);
-
         if (!Uuid::isValid($managerId)) {
             throw $this->createNotFoundException(sprintf('The manager ID "%s" is not valid!', $managerId));
         }
@@ -86,6 +84,8 @@ final class ManagerController extends AbstractController
         if (!$manager) {
             throw $this->createNotFoundException(sprintf('Manager with ID "%s" not found.', $managerId));
         }
+
+        $this->denyAccessUnlessGranted(UserVoter::EDIT_OR_REMOVE_MANAGER, $manager);
 
         try {
             $this->managerRepository->remove($manager);

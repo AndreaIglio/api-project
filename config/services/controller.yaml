@@ -13,3 +13,14 @@ services:
       - method: setContainer
         arguments: [ '@Psr\Container\ContainerInterface' ]
     tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
+  App\User\Controller\CustomerController:
+    public: true
+    arguments:
+      - '@app.hasher.user_password'
+      - '@app.repository.manager'
+      - '@app.repository.customer'
+    calls:
+      - method: setContainer
+        arguments: [ '@Psr\Container\ContainerInterface' ]
+    tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

@@ -46,7 +46,7 @@ final class UserVoter extends Voter
             case self::CREATE_MANAGER:
                 return $this->canCreateManager($user);
             case self::CREATE_CUSTOMER:
-                return $this->canCreateCustomer($user, $subject instanceof Customer ? $subject : null);
+                return $this->canCreateCustomer($user);
             case self::EDIT_OR_REMOVE_MANAGER:
                 return $this->canEditOrRemoveManager($user, $subject instanceof Manager ? $subject : null);
             case self::EDIT_OR_REMOVE_CUSTOMER:
@@ -61,21 +61,21 @@ final class UserVoter extends Voter
         return in_array('ROLE_ADMIN', $user->getRoles());
     }
 
-    private function canCreateCustomer(User $user, ?Customer $subject): bool
+    private function canCreateCustomer(User $user): bool
     {
-        // Un admin o un manager può creare un cliente
-        return in_array('ROLE_MANAGER', $user->getRoles()) || in_array('ROLE_ADMIN', $user->getRoles());
+        // A manager can create a customer
+        return in_array('ROLE_MANAGER', $user->getRoles());
     }
 
     private function canEditOrRemoveManager(User $user, ?Manager $subject): bool
     {
-        // Solo un admin o il manager stesso può modificare o rimuovere il proprio profilo
+        // The manager itself can edit or remove his profile or the admin
         return $user === $subject || in_array('ROLE_ADMIN', $user->getRoles());
     }
 
     private function canEditOrRemoveCustomer(User $user, ?Customer $subject): bool
     {
-        // Solo un cliente stesso, il suo manager, o un admin possono modificare il cliente
-        return $user === $subject || ($subject && $user === $subject->getManager()) || in_array('ROLE_ADMIN', $user->getRoles());
+        // The customer itself can edit or remove his profile or the manager related
+        return $user === $subject || ($subject && $user === $subject->getManager());
     }
 }

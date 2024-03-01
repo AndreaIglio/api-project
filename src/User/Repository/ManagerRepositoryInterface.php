@@ -15,5 +15,7 @@ interface ManagerRepositoryInterface
 
     public function findOneById(Uuid $id): ?Manager;
 
+    public function findOneByEmail(string $email): ?Manager;
+
     public function flush(): void;
 }

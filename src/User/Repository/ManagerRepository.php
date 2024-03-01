@@ -32,6 +32,11 @@ final class ManagerRepository extends ServiceEntityRepository implements Manager
         return $this->findOneBy(['id' => $id]);
     }
 
+    public function findOneByEmail(string $email): ?Manager
+    {
+        return $this->findOneBy(['email' => $email]);
+    }
+
     public function flush(): void
     {
         $this->getEntityManager()->flush();

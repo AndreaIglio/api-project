@@ -6,7 +6,7 @@ namespace App\User\Entity;
 
 use App\User\Entity\Common\User;
 
-final class Customer extends User
+class Customer extends User
 {
     private Manager $manager;
 

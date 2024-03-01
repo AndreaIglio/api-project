@@ -8,7 +8,7 @@ use App\User\Entity\Common\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-final class Manager extends User
+class Manager extends User
 {
     /** @var Collection<array-key, Customer> */
     private Collection $customers;

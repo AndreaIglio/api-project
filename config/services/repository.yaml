@@ -8,3 +8,8 @@ services:
     class: App\User\Repository\ManagerRepository
     arguments:
       - '@Doctrine\Persistence\ManagerRegistry'
+
+  app.repository.customer:
+    class: App\User\Repository\CustomerRepository
+    arguments:
+      - '@Doctrine\Persistence\ManagerRegistry'

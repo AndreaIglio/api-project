@@ -19,3 +19,18 @@ manager_remove:
   path: api/manager/{managerId}/remove
   methods: ['DELETE']
   controller: App\User\Controller\ManagerController::remove
+
+customer_add:
+  path: api/customer/add
+  methods: ['POST']
+  controller: App\User\Controller\CustomerController::add
+
+customer_edit:
+  path: api/customer/{customerId}/edit
+  methods: ['PUT']
+  controller: App\User\Controller\CustomerController::edit
+
+customer_remove:
+  path: api/customer/{customerId}/remove
+  methods: ['DELETE']
+  controller: App\User\Controller\CustomerController::remove
