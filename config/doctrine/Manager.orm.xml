@@ -1,0 +1,8 @@
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\User\Entity\Manager">
+        <one-to-many field="customers" target-entity="App\User\Entity\Customer" mapped-by="manager" />
+    </entity>
+</doctrine-mapping>

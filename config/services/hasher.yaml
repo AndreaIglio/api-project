@@ -1,0 +1,11 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: false
+    autoconfigure: false
+
+  app.hasher.user_password:
+    class: App\User\Hasher\UserPasswordHasher
+    public: true
+    arguments:
+      - '@security.user_password_hasher'

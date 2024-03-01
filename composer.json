@@ -7,10 +7,13 @@
         "php": "8.2.*",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.0",
+        "lexik/jwt-authentication-bundle": "^2.20",
         "symfony/console": "6.4.*",
         "symfony/dotenv": "6.4.*",
         "symfony/flex": "^1.17|^2",
@@ -18,7 +21,9 @@
         "symfony/http-client": "6.4.*",
         "symfony/runtime": "6.4.*",
         "symfony/security-bundle": "6.4.*",
-        "symfony/yaml": "6.4.*"
+        "symfony/uid": "6.4.*",
+        "symfony/yaml": "6.4.*",
+        "webmozart/assert": "^1.11"
     },
     "config": {
         "allow-plugins": {
@@ -61,7 +66,7 @@
         ],
         "phpstan": "vendor/bin/phpstan analyse -l max src/",
         "phpunit": "vendor/bin/phpunit",
-        "ecs": "vendor/bin/php-cs-fixer"
+        "ecs": "vendor/bin/php-cs-fixer fix"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -73,9 +78,10 @@
         }
     },
     "require-dev": {
-        "phpstan/extension-installer": "^1.2",
         "friendsofphp/php-cs-fixer": "^3.13",
+        "phpstan/extension-installer": "^1.2",
         "phpstan/phpstan-symfony": "^1.2",
-        "phpunit/phpunit": "^11.0"
+        "phpunit/phpunit": "^11.0",
+        "symfony/browser-kit": "6.4.*"
     }
 }
