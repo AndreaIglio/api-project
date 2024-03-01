@@ -1,0 +1,15 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: false
+    autoconfigure: false
+
+  App\User\Controller\ManagerController:
+    public: true
+    arguments:
+      - '@app.hasher.user_password'
+      - '@app.repository.manager'
+    calls:
+      - method: setContainer
+        arguments: [ '@Psr\Container\ContainerInterface' ]
+    tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

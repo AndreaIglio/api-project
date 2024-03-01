@@ -4,3 +4,18 @@
 jwt_authentication:
   path: /authentication
   methods: ['POST']
+
+manager_add:
+  path: api/manager/add
+  methods: ['POST']
+  controller: App\User\Controller\ManagerController::add
+
+manager_edit:
+  path: api/manager/{managerId}/edit
+  methods: ['PUT']
+  controller: App\User\Controller\ManagerController::edit
+
+manager_remove:
+  path: api/manager/{managerId}/remove
+  methods: ['DELETE']
+  controller: App\User\Controller\ManagerController::remove

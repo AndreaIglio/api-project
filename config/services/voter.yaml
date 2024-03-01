@@ -1,0 +1,10 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: false
+    autoconfigure: false
+
+  app.voter.user:
+    class: App\User\Voter\UserVoter
+    tags:
+      - { name: 'security.voter' }

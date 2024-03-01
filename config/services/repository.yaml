@@ -1,0 +1,10 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: false
+    autoconfigure: false
+
+  app.repository.manager:
+    class: App\User\Repository\ManagerRepository
+    arguments:
+      - '@Doctrine\Persistence\ManagerRegistry'
