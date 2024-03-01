@@ -6,5 +6,10 @@
             <many-to-one field="manager" target-entity="App\User\Entity\Manager" inversed-by="customers">
                 <join-column name="manager_id" referenced-column-name="id"/>
             </many-to-one>
+            <one-to-many field="multimediaResources" target-entity="App\MultimediaResource\Entity\MultimediaResource" mapped-by="customer">
+                <cascade>
+                    <cascade-remove/>
+                </cascade>
+            </one-to-many>
         </entity>
     </doctrine-mapping>
