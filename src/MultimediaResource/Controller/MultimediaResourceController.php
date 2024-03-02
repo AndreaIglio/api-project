@@ -8,7 +8,10 @@ use App\Common\Dto\JsonApiResponseDto;
 use App\MultimediaResource\Manager\MultimediaResourceManager;
 use App\MultimediaResource\Repository\MultimediaResourceRepositoryInterface;
 use App\MultimediaResource\Voter\MultimediaResourceVoter;
+use App\User\Entity\Admin;
 use App\User\Entity\Customer;
+use App\User\Entity\Manager;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -126,5 +129,42 @@ final class MultimediaResourceController extends AbstractController
         } catch (\Exception $e) {
             return JsonApiResponseDto::error($e->getMessage());
         }
+    }
+
+    /**
+     * @Route("/api/multimedia-resource/show", name="multimedia_resource_show", methods={"GET"})
+     */
+    public function show(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted(MultimediaResourceVoter::VIEW);
+        $user = $this->getUser();
+        Assert::notNull($user);
+
+        $multimediaResources = new ArrayCollection();
+
+        if ($user instanceof Admin) {
+            $multimediaResources = $this->multimediaResourceRepository->findAllMultimediaResources();
+        }
+
+        if ($user instanceof Manager) {
+            $multimediaResources = $this->multimediaResourceRepository->findByManagerId($user->getId());
+        }
+
+        if ($user instanceof Customer) {
+            $multimediaResources = $this->multimediaResourceRepository->findByCustomerId($user->getId());
+        }
+
+        $multimediaResourcesArray = [];
+
+        foreach ($multimediaResources as $multimediaResource) {
+            $multimediaResourcesArray[] = $multimediaResource->toArray();
+        }
+
+        return JsonApiResponseDto::success(
+            [
+                'multimediaResources' => $multimediaResourcesArray,
+            ],
+            'Resources retrieved successfully'
+        );
     }
 }

@@ -49,3 +49,8 @@ multimedia_resource_remove:
   path: api/multimedia-resource/{multimediaResourceId}/remove
   methods: ['DELETE']
   controller: App\MultimediaResource\Controller\MultimediaResourceController::remove
+
+multimedia_resource_show:
+  path: api/multimedia-resource/show
+  methods: ['GET']
+  controller: App\MultimediaResource\Controller\MultimediaResourceController::show

@@ -6,6 +6,7 @@ namespace App\MultimediaResource\Entity;
 
 use App\Common\Trait\UuidTrait;
 use App\User\Entity\Customer;
+use Symfony\Component\Uid\Uuid;
 
 final class MultimediaResource
 {
@@ -44,5 +45,23 @@ final class MultimediaResource
     public function getExt(): string
     {
         return $this->ext;
+    }
+
+    /**
+     * @return array{
+     *     id: Uuid,
+     *     fileName: string,
+     *     extension: string,
+     *     customerId: Uuid
+     * }
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'fileName' => $this->getFileName(),
+            'extension' => $this->getExt(),
+            'customerId' => $this->getCustomer()->getId(),
+        ];
     }
 }

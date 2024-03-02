@@ -6,7 +6,6 @@ namespace App\MultimediaResource\Voter;
 
 use App\MultimediaResource\Entity\MultimediaResource;
 use App\User\Entity\Common\User;
-use App\User\Entity\Manager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Webmozart\Assert\Assert;
@@ -36,7 +35,7 @@ class MultimediaResourceVoter extends Voter
 
         switch ($attribute) {
             case self::VIEW:
-                return $this->canView($user, $subject instanceof MultimediaResource ? $subject : null);
+                return $this->canView($user);
             case self::CREATE:
                 // Only customer can create or remove multimedia resource
                 return in_array('ROLE_CUSTOMER', $user->getRoles());
@@ -47,29 +46,11 @@ class MultimediaResourceVoter extends Voter
         return false;
     }
 
-    private function canView(User $user, ?MultimediaResource $multimediaResource): bool
+    private function canView(User $user): bool
     {
-        Assert::isInstanceOf($multimediaResource, MultimediaResource::class);
-
-        // Admin can see all resources
-        if (in_array('ROLE_ADMIN', $user->getRoles())) {
-            return true;
-        }
-
-        // Manager can see resources of its customers
-        if (in_array('ROLE_MANAGER', $user->getRoles())) {
-            Assert::isInstanceOf($user, Manager::class);
-            foreach ($user->getCustomers() as $customer) {
-                if ($multimediaResource->getCustomer() === $customer) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        // Customer can see only its own resources
-        return $multimediaResource->getCustomer() === $user;
+        return in_array('ROLE_ADMIN', $user->getRoles())
+            || in_array('ROLE_MANAGER', $user->getRoles())
+            || in_array('ROLE_CUSTOMER', $user->getRoles());
     }
 
     private function canEditOrRemove(User $user, ?MultimediaResource $multimediaResource): bool

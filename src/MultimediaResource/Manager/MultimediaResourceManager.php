@@ -57,7 +57,7 @@ final readonly class MultimediaResourceManager
 
     public function removeResource(MultimediaResource $resource): void
     {
-        $filePath = $this->uploadDirectory.'/'.$resource->getFileName(). '.' .$resource->getExt();
+        $filePath = $this->uploadDirectory.'/'.$resource->getFileName().'.'.$resource->getExt();
         $fileSystem = new Filesystem();
 
         if ($fileSystem->exists($filePath)) {
