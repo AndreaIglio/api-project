@@ -79,10 +79,11 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.13",
         "phpstan/extension-installer": "^1.2",
         "phpstan/phpstan-symfony": "^1.2",
-        "phpunit/phpunit": "^11.0",
+        "phpunit/phpunit": "^10.5-dev",
         "symfony/browser-kit": "6.4.*"
     }
 }

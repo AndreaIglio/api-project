@@ -5,25 +5,32 @@ declare(strict_types=1);
 namespace App\Tests\JWT;
 
 use App\User\Entity\Manager;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\EntityManager;
+use PHPUnit\Framework\Attributes\Test;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 final class AuthenticationTest extends WebTestCase
 {
+    private KernelBrowser $client;
+
+    private EntityManager $entityManager;
+
     protected function setUp(): void
     {
-        parent::setUp();
+        $this->client = self::createClient();
+        $this->entityManager = self::getContainer()->get('doctrine')->getManager();
+        $purger = new ORMPurger($this->entityManager);
+        $purger->purge();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_verify_the_authentication_with_jwt(): void
     {
-        $client = self::createClient();
         $userPasswordHasher = self::getContainer()->get('app.hasher.user_password');
-        $entityManager = self::getContainer()->get('doctrine')->getManager();
 
-        $email = 'test@example.com';
+        $email = 'manager@example.com';
         $plaintextPassword = 'p4ssw0rd';
 
         $user = new Manager(
@@ -33,28 +40,25 @@ final class AuthenticationTest extends WebTestCase
 
         $userPasswordHasher->setHashedPassword($user, $plaintextPassword);
 
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
 
-        // retrieve a token
-        $response = $client->request('POST', '/authentication_token', [
-            'headers' => ['Content-Type' => 'application/json'],
-            'json' => [
-                'email' => $email,
-                'password' => $plaintextPassword,
-            ],
-        ]);
-
-        $json = $response->toArray();
-        $this->assertResponseIsSuccessful();
-        $this->assertArrayHasKey('token', $json);
+        $this->client->request('POST', '/authentication', [
+        ], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
+            'username' => $email,
+            'password' => $plaintextPassword,
+        ]));
+        $json = json_decode($this->client->getResponse()->getContent(), true);
+        self::assertArrayHasKey('token', $json);
 
         // test not authorized
-        $client->request('GET', '/api/agenzia_installatrices');
-        $this->assertResponseStatusCodeSame(401);
+        $this->client->request('GET', '/api/multimedia-resource/show');
+        self::assertResponseStatusCodeSame(401);
 
         // test authorized
-        $client->request('GET', '/api/agenzia_installatrices', ['auth_bearer' => $json['token']]);
+        $this->client->request('GET', '/api/multimedia-resource/show', [], [], [
+            'HTTP_AUTHORIZATION' => 'Bearer '.$json['token'],
+        ]);
         $this->assertResponseIsSuccessful();
     }
 }
