@@ -45,6 +45,7 @@ bin/console d:m:m --env=test
 * [Customer](documentation/api/customer/customer.md)
 * [Manager](documentation/api/manager/manager.md)
 * [MultimediaResource](documentation/api/multimedia_resource/multimedia_resource.md)
+* [PostmanCollectionExported](documentation/api/postman/postman_collection.json)
 
 #### Tools
 The project use some development tools to guarantee code quality and standard, you can run them using the composer scripts:
