@@ -68,6 +68,7 @@
         "phpstan": "vendor/bin/phpstan analyse -l max src/",
         "phpunit": "vendor/bin/phpunit",
         "ecs": "vendor/bin/php-cs-fixer check",
+        "ecs_fix": "vendor/bin/php-cs-fixer fix",
         "test": [
             "@ecs",
             "@phpstan",
@@ -84,6 +85,7 @@
         }
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^8.0",
         "doctrine/doctrine-fixtures-bundle": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.13",
         "phpstan/extension-installer": "^1.2",

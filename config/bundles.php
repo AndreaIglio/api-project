@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use DAMA\DoctrineTestBundle\DAMADoctrineTestBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
@@ -16,4 +17,5 @@ return [
     SecurityBundle::class => ['all' => true],
     LexikJWTAuthenticationBundle::class => ['all' => true],
     DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
+    DAMADoctrineTestBundle::class => ['test' => true],
 ];
