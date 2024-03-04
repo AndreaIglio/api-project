@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "b4acf448-5918-42bb-b7e0-c55416265891",
+		"name": "Nautes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14142291"
+	},
+	"item": [
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "manager_add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkyOTYwMTYsImV4cCI6MTcwOTI5OTYxNiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGV4YW1wbGUuY29tIn0.fpWNqunIn1VMwgzSN2G8MraMojRt39pYlUmTeZoLwILUkR-hpvEkHnAj8kjiW7osyOUlTwnAOZqGAIgmYgHy5_53FlwyI2MkPMr3VcCu03IqESCXqQxtWATPCavjyjBABTzu5RhWNxpqTz1JljZIS7UKY2WrfMxLbr5qUmRuPedk99nOJhGls1hmNwsOapHNMWUAV7J_nkPHchBvR-HCZZjOuBJW0EW46zniN6f2xSHRkjZpMUUuJJyMXLalAEQ_inTcW28jFR9fdnBsjkpJzowaUAYK_mDKvn87wIQWenU3iB1SABWz4WdOWDR39tzXnSavmxyUJE5_iLmJvPsnOg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pino@gmail.com\",\n    \"password\": \"io\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/manager/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"manager",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "manager_edit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkzMDU1MzcsImV4cCI6MTcwOTMwOTEzNywicm9sZXMiOlsiUk9MRV9NQU5BR0VSIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicGlub0BnbWFpbC5jb20ifQ.QXrNULlAZPRfvmtgQdN3-g_J7Qikml8-Zhn4LBjSWGfScugBST7isQKTkhK_0Vcoc9ROmJLWRhZ9DSK7XJCs7MQj3nlCSoKh5XrNGkbMsXUEvMCQF9ApRniducaHgcKAirXMKbLiYNNSLw3OlGr-zTYNXCpLQ4elnF35orDCcLo57WvrLltAGDkEonCsNWMZ1nMJqdPW8gZX2Qb2XndGDGNRww1-dYzuhj0toNLgEJkb0whdGe4WBIVlXb4ALLXJ8PEJ-mm6og7nK8kt-ASf757U5GDIJc6NT5drpfpQ4VCnu4w8Ww0zgevQo8Pr4ChUDKU019xK8JPIA8akKhholA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ss@modifica.com\",\n    \"password\": \"ciao\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/manager/1eed7dd4-a938-63da-a498-99b6f690a432/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"manager",
+								"1eed7dd4-a938-63da-a498-99b6f690a432",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "manager_remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkyOTk3MTAsImV4cCI6MTcwOTMwMzMxMCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGV4YW1wbGUuY29tIn0.bjT-DF0SAyg_pV8YhaniimDRnb2txbHo6NBPwO2OhD2ltsaBjpwKZnMYoYoiK1heodLjud8c-RUGF-c5IVlNnGBP_VCnGAx4t7Z7iKocws355lgYnHRqJcdU60D-YAyOar5Y1FmdMuVOoxfZARr1I1NctAFQ93z_HxZnlqdTfw0ae187oA_shi7in8VAbKkyVJ0aBffsFcFxP0ErHRTctQR-HA6nxFvwpAGbeuuN6AwthUbI6sNAETkTfKziEONJeSvfw0bCZhxbtKEybOiEszd4Mk8GhyMAj1ZXR4FmoMAPwswl6Jog-b-gLaOWCom3giIf4_3bMtsa-NRaKq2HEw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/manager/1eed7dd4-a938-63da-a498-99b6f690a432/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"manager",
+								"1eed7dd4-a938-63da-a498-99b6f690a432",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "customer_add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkzMDU3OTIsImV4cCI6MTcwOTMwOTM5Miwicm9sZXMiOlsiUk9MRV9NQU5BR0VSIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoic3NAbW9kaWZpY2EuY29tIn0.SQFyyb1lSTdp5EmcG22HF0NYpsfdwC8u7QFZmL5iLkXN-8_k1Wu8raF36rC-be7gP1ST2tbAEK886zkMdFmglYfseRfMbQ3R9AYEmVuM3NvjpAwIUxCtoe5kTZb1lXX19HRzBg-sYuWQtfVZcS0sCehWKroWN2jXZhkH1368G8F4oYksRFjBZjFVEcXdRzu_77FXa8ghf2TCgOiHTJ9jFIbrmJRqC0SUOQux4FaHF_WtSrlRh3-HFQP8eae9TiGAvOum1Q2qtV9dFr-oYIRsYUrmV_Cv2SI6dzJ1l3VcmfMUEy-ds9FwHyT641AL09WtizGzf13gZ8vuMnzZtbmNYA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer@gmail.com\",\n    \"password\": \"io\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer_edit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkzMDMyOTYsImV4cCI6MTcwOTMwNjg5Niwicm9sZXMiOlsiUk9MRV9DVVNUT01FUiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InRlc3RhcmRvQGdtYWlsLmNvbSJ9.Y9nHttMZqemzVfskpsgs6u1CW-qm4Z_ze_98W7A_4VJXB5ETMIbVFQk9WSdmcT4Y9d_EUOcHJaNHIEPmMdjBnesy-GFrgTM5L9mgNdVoGskZMdf03yRM11CoulC4roEubOAX27pdi-9-j0h_0lFgf2Knl9NbzXRmMCv9BlsRBHy9Ceuq20ivP8JJq5jsbF6P6Z4bTnWmWO5d8Sz7-mJ8hnclJulwQsPMgs-s0Y5nzOVOdx_GI27N0Kr5dvgnxoQU9hylC5OlCTY9lYIWBAoKm4Ma-3RpQybAKUfVUU6KVmsKtPFQ1dFrF3237pgl47jWyvH4N1X0ARNmh1DduR8wJA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer_modificato@gmail.com\",\n    \"password\": \"modificata\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/customer/1eed7d5e-3d40-6540-b37f-b7e78fe540b9/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customer",
+								"1eed7d5e-3d40-6540-b37f-b7e78fe540b9",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer_remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkzMDY0NzAsImV4cCI6MTcwOTMxMDA3MCwicm9sZXMiOlsiUk9MRV9DVVNUT01FUiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImN1c3RvbWVyX21vZGlmaWNhdG9AZ21haWwuY29tIn0.e22ge-LnSLTFkaGWeuSr3EnlWgv0Vi0sb6dxwjuQY9owzx2YSMesBw1Tj1ISgOiCBiSmXGXhyLksFxaDs8nHntIN1vwvWV-ySab5fgQWM-UrD4u7bB3boUJERJF0pz_2A_XXQOKQU4SiODHuTpk6ovS4wiMQySxkr2x8xPPpzk-u-QEmULcx4u_SLBjthFU6g-uQ8bPQjeOEYCng1CJPdvZY3ZDuvpCnFRoaDL9J5CS2SiJ2z6fNZZYd77DbenB89BnEJeIGSRt8FZLTEvVeJf6oobqQqv9lyste7md72Us2KVy3fMEQDRpZxxX_Izz7Uwf1e1WEv9SAnFk0Idjn1A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/customer/1eed7ddf-47fa-695a-8e09-299a51e33029/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"customer",
+								"1eed7ddf-47fa-695a-8e09-299a51e33029",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MultimediaResource",
+			"item": [
+				{
+					"name": "multimedia_resource_add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkzMjQwMDgsImV4cCI6MTcwOTMyNzYwOCwicm9sZXMiOlsiUk9MRV9DVVNUT01FUiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImN1c3RvbWVyQGdtYWlsLmNvbSJ9.XOMFrg-A9DQsD37AS_SRz2YswIpt1P4GLl08qRopmUpS6cUsmpBMKfJSWyW1LjBqZI9dyIu50ECkO24bn2uo24FLqbGAVi5gxtMDBncsIq4Aska5jXS2A4ckT1mCp605jWiq2WPEIoY0bRa6K3m5av9U0_FwuXV3MYrb59IDvXMnStw8e_yxEnNaGhXTcS854DDP9nLcqgc9NxNjQalq-C6-DRCLxq56AA79MJaH4t4w1QtMbrCbmVL2Htta9NQwekiVkqTJAOIZxJ26l__eHLO083y7PuUEPUttge4szgY0vcRRiyPygwfXX_UtoKq0POXIpMcKxDRQc0fb68FfnQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/andrea/Desktop/Prova BE_2024.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/multimedia-resource/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"multimedia-resource",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multimedia_resource_remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/multimedia-resource/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"multimedia-resource",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multimedia_resource_edit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDkzMzE5OTksImV4cCI6MTcwOTMzNTU5OSwicm9sZXMiOlsiUk9MRV9DVVNUT01FUiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImN1c3RvbWVyQGdtYWlsLmNvbSJ9.T6Oa4K9g1YOcF8Z32ot22c-oy7oiWoCIFtU4l3Y47DXpYiY6U2yZSsqKb7Bgnvn-JOcT70YPozKIF4P--0xHXX4W3EvlCoO4J35qhWtnpP1pfGIhmhv_7lgG3gkSmYVaDT6WYlnuI3Ns_N6ETTLS-JpkRJqHG8znjcpNXUg3K2rvjuZ0usl6r3RjIpbaaq3KRRQpxjiD3gmABavf6lxmcAD467ojQMFMTBLdzR1EuwKXQ7s9zT2XT1ZiUW9yvJNiOcINFmE1Q7oi3IdGXtoXrp_FopAtr5jedgb1Atogq6uMySEe0Zfso1vCKtV5bg7MRRF6OnVqg8SNNfXg9E9Kzg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fileName\": \"pino\",\n    \"ext\": \"png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/multimedia-resource/1eed81eb-b6d4-6b86-9915-b7fcc46e0094/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"multimedia-resource",
+								"1eed81eb-b6d4-6b86-9915-b7fcc46e0094",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multimedia_resource_show",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authentication_manager",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"manager@gmail.com\",\n    \"password\": \"io\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/authentication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authentication_customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"customer_modificato@gmail.com\",\n    \"password\": \"modificata\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/authentication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authentication_admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin@example.com\",\n    \"password\": \"p4ssw0rd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/authentication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"authentication"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
