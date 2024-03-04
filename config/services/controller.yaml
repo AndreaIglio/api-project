@@ -7,8 +7,8 @@ services:
   App\User\Controller\ManagerController:
     public: true
     arguments:
-      - '@app.hasher.user_password'
       - '@app.repository.manager'
+      - '@app.manager.user_service'
     calls:
       - method: setContainer
         arguments: [ '@Psr\Container\ContainerInterface' ]
@@ -17,9 +17,9 @@ services:
   App\User\Controller\CustomerController:
     public: true
     arguments:
-      - '@app.hasher.user_password'
       - '@app.repository.manager'
       - '@app.repository.customer'
+      - '@app.manager.user_service'
     calls:
       - method: setContainer
         arguments: [ '@Psr\Container\ContainerInterface' ]

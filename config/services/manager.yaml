@@ -9,3 +9,10 @@ services:
     arguments:
       - '@app.repository.multimedia_resource'
       - '%kernel.project_dir%/public/multimedia_resources'
+
+  app.manager.user_service:
+    class: App\User\Manager\UserManagerService
+    arguments:
+      - '@app.hasher.user_password'
+      - '@app.repository.manager'
+      - '@app.repository.customer'

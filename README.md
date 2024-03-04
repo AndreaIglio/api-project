@@ -52,3 +52,5 @@ The project use some development tools to guarantee code quality and standard, y
 - composer phpstan (static code analyse)
 - composer phpunit (test)
 - composer ecs (fix code style)
+
+- composer test to run all three tools

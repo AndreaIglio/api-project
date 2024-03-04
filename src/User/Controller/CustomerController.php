@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\User\Controller;
 
 use App\Common\Dto\JsonApiResponseDto;
+use App\User\Dto\RequestUserDataDto;
 use App\User\Entity\Customer;
-use App\User\Entity\Manager;
-use App\User\Hasher\UserPasswordHasherInterface;
+use App\User\Manager\UserManagerServiceInterface;
 use App\User\Repository\CustomerRepositoryInterface;
 use App\User\Repository\ManagerRepositoryInterface;
 use App\User\Voter\UserVoter;
@@ -21,9 +21,9 @@ use Webmozart\Assert\Assert;
 final class CustomerController extends AbstractController
 {
     public function __construct(
-        private readonly UserPasswordHasherInterface $userPasswordHasher,
         private readonly ManagerRepositoryInterface $managerRepository,
         private readonly CustomerRepositoryInterface $customerRepository,
+        private readonly UserManagerServiceInterface $userManagerService,
     ) {}
 
     /**
@@ -43,7 +43,10 @@ final class CustomerController extends AbstractController
             if (!$manager) {
                 throw $this->createNotFoundException('Manager not found.');
             }
-            $createResult = $this->createNewCustomer($manager, $requestData);
+            /**
+             * @var array{email: ?string, password: ?string} $requestData
+             */
+            $createResult = $this->userManagerService->createNewCustomer($manager, RequestUserDataDto::fromRequestData($requestData));
 
             return JsonApiResponseDto::success($createResult['message']);
         } catch (\Exception $e) {
@@ -72,7 +75,10 @@ final class CustomerController extends AbstractController
         Assert::isArray($requestData);
 
         try {
-            $updateResult = $this->updateCustomer($customer, $requestData);
+            /**
+             * @var array{email: ?string, password: ?string} $requestData
+             */
+            $updateResult = $this->userManagerService->updateCustomer($customer, RequestUserDataDto::fromRequestData($requestData));
 
             return JsonApiResponseDto::success($updateResult['message']);
         } catch (\Exception $e) {
@@ -105,71 +111,5 @@ final class CustomerController extends AbstractController
         } catch (\Exception $e) {
             return JsonApiResponseDto::error($e->getMessage());
         }
-    }
-
-    /**
-     * @param Customer $customer
-     * @param array{
-     *      email?: string|null,
-     *      password?: string|null
-     *  } $requestData
-     *
-     * @return array{'updated': bool, 'message': string}
-     */
-    private function updateCustomer(Customer $customer, array $requestData): array
-    {
-        $email = $requestData['email'] ?? null;
-        $password = $requestData['password'] ?? null;
-        $isUpdated = false;
-        $updateMessage = 'Customer successfully updated';
-
-        if ($email && $customer->getEmail() !== $email) {
-            $customer->setEmail($email);
-            $isUpdated = true;
-            $updateMessage .= " with email {$email}";
-        }
-
-        if ($password) {
-            $this->userPasswordHasher->setHashedPassword($customer, $password);
-            $isUpdated = true;
-            $updateMessage .= $email ? ' and new password' : ' with also new password';
-        }
-
-        if ($isUpdated) {
-            $this->customerRepository->add($customer);
-            $this->customerRepository->flush();
-        }
-
-        return [
-            'updated' => $isUpdated,
-            'message' => $updateMessage,
-        ];
-    }
-
-    /**
-     * @param Manager $manager
-     * @param array{
-     *      email?: string|null,
-     *      password?: string|null
-     *  } $requestData
-     *
-     * @return array{'message': string}
-     */
-    private function createNewCustomer(Manager $manager, array $requestData): array
-    {
-        $email = $requestData['email'] ?? null;
-        $password = $requestData['password'] ?? null;
-
-        if (!$email || !$password) {
-            throw new \InvalidArgumentException('Email and password are needed.');
-        }
-
-        $customer = new Customer($manager, $password, $email);
-        $this->userPasswordHasher->setHashedPassword($customer, $password);
-
-        $this->customerRepository->add($customer);
-        $this->customerRepository->flush();
-
-        return ['message' => "Customer successfully created with email {$email} and Id {$customer->getId()} related with Manager {$manager->getEmail()}"];
     }
 }
